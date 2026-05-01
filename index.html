@@ -3,125 +3,222 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rich Cherie｜網頁作品目錄</title>
-  <meta name="description" content="Rich Cherie 目前已建立的公開網頁目錄與分類整理。" />
+  <title>Rich Cherie｜整合網站入口</title>
+  <meta name="description" content="Rich Cherie 目前所有已建立網頁的整合入口，可直接搜尋、分類、點開使用。" />
   <style>
     :root {
-      --bg:#f8f3ed; --paper:#fffaf5; --card:#ffffff; --text:#191614; --sub:#746c63;
-      --gold:#b58a55; --line:#eadbca;
+      --bg:#0f1220; --paper:#171b2e; --card:#1d2440; --card2:#232c4d; --text:#eef2ff; --sub:#aab4d6;
+      --line:#303a66; --accent:#8fb0ff; --accent2:#d8c7ff;
     }
     * { box-sizing:border-box; }
     body {
       margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;
-      background:linear-gradient(180deg,#fdf9f4 0%,#f8f3ed 100%); color:var(--text); line-height:1.75;
+      background:linear-gradient(180deg,#0b1020 0%,#11172b 100%); color:var(--text); line-height:1.75;
     }
-    .wrap { max-width:960px; margin:0 auto; padding:16px 12px 72px; }
-    .hero,.section { background:var(--paper); border:1px solid var(--line); border-radius:28px; padding:22px 18px; }
-    .hero { box-shadow:0 16px 34px rgba(80,56,30,.08); }
+    .wrap { max-width:1100px; margin:0 auto; padding:16px 14px 88px; }
     .banner {
-      display:block; text-align:center; padding:10px 14px; margin-bottom:12px; border-radius:999px;
-      background:linear-gradient(135deg,#fff8ef 0%,#f2dfc7 100%); border:1px solid var(--line);
-      color:#9a6b3d; font-weight:800; letter-spacing:.08em;
+      text-align:center; color:var(--accent2); margin:0 0 10px; letter-spacing:.08em; font-weight:700;
     }
-    .brand { background:rgba(255,255,255,.78); border:1px solid var(--line); border-radius:24px; padding:16px; margin-bottom:16px; }
+    .brand {
+      background:rgba(23,27,46,.96); border:1px solid var(--line); border-radius:24px; padding:18px; margin-bottom:16px;
+      box-shadow:0 16px 40px rgba(0,0,0,.22);
+    }
     .brand-title { font-size:1.12rem; font-weight:800; margin-bottom:8px; }
     .brand-sub { color:var(--sub); margin-bottom:6px; }
-    .ig-link {
-      display:inline-flex; align-items:center; gap:8px; margin-top:10px; padding:10px 14px; border-radius:999px;
-      background:#fff; border:1px solid var(--line); color:#8a5b2f; font-weight:700; text-decoration:none;
+    .brand a { color:#cfe0ff; text-decoration:none; }
+    .hero, .section {
+      background:rgba(23,27,46,.96); border:1px solid var(--line); border-radius:24px; padding:22px 18px;
+      box-shadow:0 16px 40px rgba(0,0,0,.22);
     }
-    .ig-icon { width:18px; height:18px; }
-    h1 { font-size:2rem; margin:14px 0 10px; }
-    h2 { font-size:1.35rem; margin:0 0 12px; }
-    .lead { color:var(--sub); margin:0; }
+    .hero { margin-bottom:18px; }
+    h1 { font-size:2rem; margin:0 0 10px; }
+    h2 { font-size:1.2rem; margin:0 0 12px; }
+    p { margin:0; }
+    .lead { color:var(--sub); }
+    .toolbar {
+      display:grid; grid-template-columns:1fr auto; gap:12px; margin-top:18px;
+    }
+    .search {
+      width:100%; padding:14px 16px; border-radius:14px; border:1px solid var(--line); background:#0f1530; color:var(--text);
+      font-size:15px;
+    }
+    .count {
+      display:flex; align-items:center; justify-content:center; min-width:120px; padding:0 14px; border-radius:14px;
+      border:1px solid var(--line); background:#0f1530; color:var(--sub); font-size:14px;
+    }
     .section { margin-top:18px; }
-    .grid { display:grid; gap:14px; }
-    .card { background:var(--card); border:1px solid var(--line); border-radius:22px; padding:16px; }
-    .tag { display:inline-block; margin-bottom:10px; background:#f2e2cf; color:#8a6135; padding:5px 11px; border-radius:999px; font-size:.8rem; font-weight:800; }
-    a.link { color:#8a5b2f; font-weight:700; word-break:break-all; }
-    ul { margin:10px 0 0; padding-left:1.2rem; color:var(--sub); }
-    .footer { margin-top:20px; color:#8f857d; font-size:.9rem; text-align:center; }
-    @media (max-width:680px) { h1 { font-size:1.7rem; } .hero,.section { padding:18px 14px; border-radius:22px; } }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+    .card {
+      background:linear-gradient(180deg,var(--card) 0%,var(--card2) 100%); border:1px solid var(--line); border-radius:20px; padding:16px;
+    }
+    .tag {
+      display:inline-block; margin-bottom:10px; background:#263056; color:#dce7ff; padding:5px 11px; border-radius:999px; font-size:.8rem; font-weight:800;
+    }
+    .title { font-size:1rem; font-weight:800; margin-bottom:8px; }
+    .desc { color:var(--sub); font-size:.95rem; margin-bottom:12px; }
+    .link { color:#cfe0ff; font-weight:700; text-decoration:none; word-break:break-all; }
+    .actions { margin-top:12px; display:flex; flex-wrap:wrap; gap:10px; }
+    .btn {
+      display:inline-block; padding:10px 14px; border-radius:12px; background:#263056; color:#fff; text-decoration:none; font-weight:700;
+    }
+    .meta { color:var(--sub); font-size:.84rem; margin-top:10px; }
+    .empty {
+      display:none; margin-top:18px; padding:18px; border-radius:18px; border:1px dashed var(--line); color:var(--sub); text-align:center;
+    }
+    .footer { margin-top:22px; color:#8f99bd; font-size:.9rem; text-align:center; }
+    @media (max-width:680px) {
+      h1 { font-size:1.7rem; }
+      .toolbar { grid-template-columns:1fr; }
+    }
   </style>
 </head>
 <body>
   <main class="wrap">
+    <div class="banner">─── 𝓡𝓲𝓬𝓱 𝓒𝓱𝓮𝓻𝓲𝓮 ───</div>
+
+    <div class="brand">
+      <div class="brand-title">鑫彤女王 𝔛𝔦𝔫𝔱𝔬𝔫𝔤 𝔔𝔲𝔢𝔢𝔫</div>
+      <div class="brand-sub">房產投資／理財實戰／美業領航</div>
+      <div class="brand-sub"><a href="https://www.instagram.com/cherie.estilista" target="_blank" rel="noopener noreferrer">Instagram｜cherie.estilista</a></div>
+    </div>
+
     <section class="hero">
-      <div class="banner">─── 𝓡𝓲𝓬𝓱 𝓒𝓱𝓮𝓻𝓲𝓮 ───</div>
-      <div class="brand">
-        <div class="brand-title">鑫彤女王 𝔛𝔦𝔫𝔱𝔬𝔫𝔤 𝔔𝔲𝔢𝔢𝔫</div>
-        <div class="brand-sub">▫️ 房產投資 ▫️ 理財實戰 ▫️ 美業領航</div>
-        <div class="brand-sub">艾絲緹造型團隊主理人 <a href="https://www.instagram.com/estilista.wedding_" target="_blank" rel="noopener noreferrer" style="color:#8a5b2f;font-weight:700;text-decoration:none;">@estilista.wedding_</a></div>
-        <a class="ig-link" href="https://www.instagram.com/cherie.estilista" target="_blank" rel="noopener noreferrer">
-          <svg class="ig-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg>
-          Instagram｜cherie.estilista
-        </a>
+      <h1>整合網站入口</h1>
+      <p class="lead">我把目前幫妳做過、還能直接打開的頁面整合在同一頁。之後妳只要開這個入口，就能直接搜尋、分類、點進去看，不用再另外找網址。</p>
+      <div class="toolbar">
+        <input id="searchInput" class="search" type="text" placeholder="搜尋關鍵字，例如：美股、台股、方舟、講義、招生、AI..." />
+        <div id="countBox" class="count">共 13 個頁面</div>
       </div>
-      <h1>目前已建立的公開網頁目錄</h1>
-      <p class="lead">我把目前幫你做過的網頁整理成分類目錄。<br><br>之後你要找頁面、改頁面、延伸成新版本，<br>都會更方便。</p>
     </section>
 
     <section class="section">
-      <h2>📘 投資講義 / 策略頁</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="tag">方舟運算 × 美股進階講義</div>
-          <p><strong>Rich Cherie｜方舟運算／美股菁英班「一股戰法」</strong></p>
-          <p class="lead">包含講義來源強調、進階佈局 SOP、調節情境、風控邏輯與可操作計算機。</p>
+      <h2>全部頁面</h2>
+      <div id="cards" class="grid">
+        <article class="card" data-search="美股 預習 總站 盤前 方舟 新聞 個股 分析 pre us stock">
+          <div class="tag">美股總站</div>
+          <div class="title">美股預習總站</div>
+          <div class="desc">集中收錄每日美股盤前頁面，之後新的美股預習頁也可以持續往這裡收。</div>
+          <a class="link" href="https://cherie0080.github.io/pre-us-stock/" target="_blank" rel="noopener noreferrer">https://cherie0080.github.io/pre-us-stock/</a>
+          <div class="actions"><a class="btn" href="https://cherie0080.github.io/pre-us-stock/" target="_blank" rel="noopener noreferrer">打開頁面</a></div>
+        </article>
+
+        <article class="card" data-search="美股 預習 20260430 蘋果 ai 半導體 光通訊 航太 us report">
+          <div class="tag">美股獨立頁</div>
+          <div class="title">2026/04/30 美股預習頁</div>
+          <div class="desc">整合方舟持股配置、美股價值區與今晚主線判讀。</div>
+          <a class="link" href="https://cherie0080.github.io/pre-us-stock/us-report-20260430.html" target="_blank" rel="noopener noreferrer">https://cherie0080.github.io/pre-us-stock/us-report-20260430.html</a>
+        </article>
+
+        <article class="card" data-search="美股 預習 20260429 方舟 整合 新聞 us stock news">
+          <div class="tag">美股獨立頁</div>
+          <div class="title">2026/04/29 美股盤前方舟整合頁</div>
+          <div class="desc">整合價值清單、持股配置、VIX、金價、油價與盤前判讀。</div>
+          <a class="link" href="https://cherie0080.github.io/pre-us-stock/20260429-us-stock-news.html" target="_blank" rel="noopener noreferrer">https://cherie0080.github.io/pre-us-stock/20260429-us-stock-news.html</a>
+        </article>
+
+        <article class="card" data-search="美股 預習 20260429 nvda avgo mu amat lrcx klac lite">
+          <div class="tag">美股獨立頁</div>
+          <div class="title">2026/04/29 美股預習頁</div>
+          <div class="desc">聚焦 AI 與半導體鏈的盤前狀態與今晚主線。</div>
+          <a class="link" href="https://cherie0080.github.io/pre-us-stock/20260429.html" target="_blank" rel="noopener noreferrer">https://cherie0080.github.io/pre-us-stock/20260429.html</a>
+        </article>
+
+        <article class="card" data-search="美股 預習 20260428 川普 馬斯克 國際新聞">
+          <div class="tag">美股獨立頁</div>
+          <div class="title">2026/04/28 美股盤前整合頁</div>
+          <div class="desc">整合建議持股水位、美股價值清單、國際新聞與主線判讀。</div>
+          <a class="link" href="https://cherie0080.github.io/pre-us-stock/20260428.html" target="_blank" rel="noopener noreferrer">https://cherie0080.github.io/pre-us-stock/20260428.html</a>
+        </article>
+
+        <article class="card" data-search="美股 預習 20260427 ai 主線 新聞 整理">
+          <div class="tag">美股獨立頁</div>
+          <div class="title">2026/04/27 美股開盤前預期頁</div>
+          <div class="desc">整理熱門新聞、AI 主線與個股盤前觀察。</div>
+          <a class="link" href="https://cherie0080.github.io/pre-us-stock/20260427.html" target="_blank" rel="noopener noreferrer">https://cherie0080.github.io/pre-us-stock/20260427.html</a>
+        </article>
+
+        <article class="card" data-search="美股 預習 20260424 原始 歷史 頁面">
+          <div class="tag">美股歷史頁</div>
+          <div class="title">2026/04/24 原始美股預習頁</div>
+          <div class="desc">保留最初版本，作為歷史內容存檔。</div>
+          <a class="link" href="https://cherie0080.github.io/pre-us-stock/20260424.html" target="_blank" rel="noopener noreferrer">https://cherie0080.github.io/pre-us-stock/20260424.html</a>
+        </article>
+
+        <article class="card" data-search="方舟 一股戰法 講義 策略 計算機 美股菁英班 ark stock trading strategy">
+          <div class="tag">策略講義</div>
+          <div class="title">方舟運算／美股菁英班一股戰法</div>
+          <div class="desc">包含進階布局 SOP、調節情境、風控邏輯與可操作計算機。</div>
           <a class="link" href="https://cherie0080.github.io/ark-stock-trading-strategy/" target="_blank" rel="noopener noreferrer">https://cherie0080.github.io/ark-stock-trading-strategy/</a>
-          <ul>
-            <li>已含計算機</li>
-            <li>已含封面圖卡</li>
-            <li>已調整手機版閱讀</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+          <div class="actions"><a class="btn" href="https://cherie0080.github.io/ark-stock-trading-strategy/" target="_blank" rel="noopener noreferrer">打開頁面</a></div>
+        </article>
 
-    <section class="section">
-      <h2>🏠 資產配置 / 招生型頁面</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="tag">股市 × 房市資產閉環</div>
-          <p><strong>Rich Cherie｜500萬如何做股市×房市資產閉環？</strong></p>
-          <p class="lead">以 200 到 300 萬做房產頭期款，其餘資金投入股市，搭配風控與講座 CTA 的公開頁。</p>
+        <article class="card" data-search="方舟 新手 講義 教學 ark newbie guide 新手帶看 sop">
+          <div class="tag">教學講義</div>
+          <div class="title">方舟運算新手講義</div>
+          <div class="desc">把方舟新手 SOP 整理成適合帶新手一起看的公開網頁版。</div>
+          <a class="link" href="https://cherie0080.github.io/ark-newbie-guide.html" target="_blank" rel="noopener noreferrer">https://cherie0080.github.io/ark-newbie-guide.html</a>
+          <div class="actions"><a class="btn" href="https://cherie0080.github.io/ark-newbie-guide.html" target="_blank" rel="noopener noreferrer">打開頁面</a></div>
+        </article>
+
+        <article class="card" data-search="公開網頁 教學 講義 github pages codex website 一頁式">
+          <div class="tag">網站教學</div>
+          <div class="title">公開網頁製作教學講義</div>
+          <div class="desc">整理怎麼把內容做成公開網頁的一頁式教學簡報版。</div>
+          <a class="link" href="https://cherie0080.github.io/codexXgithubXwebsite/" target="_blank" rel="noopener noreferrer">https://cherie0080.github.io/codexXgithubXwebsite/</a>
+          <div class="actions"><a class="btn" href="https://cherie0080.github.io/codexXgithubXwebsite/" target="_blank" rel="noopener noreferrer">打開頁面</a></div>
+        </article>
+
+        <article class="card" data-search="股市 房市 資產閉環 招生 fiq 一股戰法 房產 理財">
+          <div class="tag">招生／資產配置頁</div>
+          <div class="title">500萬如何做股市×房市資產閉環</div>
+          <div class="desc">以股市與房市雙引擎做資產配置的公開頁。</div>
           <a class="link" href="https://cherie0080.github.io/FIQ/" target="_blank" rel="noopener noreferrer">https://cherie0080.github.io/FIQ/</a>
-          <ul>
-            <li>IG / 小紅書風排版</li>
-            <li>已含品牌介紹與連結</li>
-            <li>已調整為手機友善版本</li>
-          </ul>
-        </div>
+          <div class="actions"><a class="btn" href="https://cherie0080.github.io/FIQ/" target="_blank" rel="noopener noreferrer">打開頁面</a></div>
+        </article>
+
+        <article class="card" data-search="台股 預習 複盤 模板 tw stock">
+          <div class="tag">台股頁面</div>
+          <div class="title">2026/04/24 台股預習／複盤模板頁</div>
+          <div class="desc">目前可延伸成台股預習或複盤版型的基礎頁。</div>
+          <a class="link" href="https://cherie0080.github.io/20260424-tw-stock/" target="_blank" rel="noopener noreferrer">https://cherie0080.github.io/20260424-tw-stock/</a>
+        </article>
+
+        <article class="card" data-search="網站 目錄 整合 入口 搜尋 所有網頁">
+          <div class="tag">整合入口</div>
+          <div class="title">目前這個整合入口頁</div>
+          <div class="desc">之後妳可以直接收藏這頁，當成所有網站的總入口。</div>
+          <a class="link" href="https://cherie0080.github.io/site-directory/" target="_blank" rel="noopener noreferrer">https://cherie0080.github.io/site-directory/</a>
+          <div class="actions"><a class="btn" href="https://cherie0080.github.io/site-directory/" target="_blank" rel="noopener noreferrer">打開頁面</a></div>
+        </article>
       </div>
+      <div id="emptyState" class="empty">目前沒有符合的頁面，妳可以換個關鍵字試試看。</div>
     </section>
 
-    <section class="section">
-      <h2>🇺🇸 美股觀察 / 圖卡頁</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="tag">2026/04/24 美股價值區</div>
-          <p><strong>Rich Cherie｜今晚納入美股價值區的個股有哪些？</strong></p>
-          <p class="lead">包含完整版資料卡、社群圖卡版與方舟複盤結論。</p>
-          <a class="link" href="https://cherie0080.github.io/20260424-us-stock/" target="_blank" rel="noopener noreferrer">https://cherie0080.github.io/20260424-us-stock/</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>🗂️ 補充說明</h2>
-      <div class="card">
-        <p><strong>目前主要公開頁有這三組：</strong></p>
-        <ul>
-          <li><strong>FIQ</strong>：股市 × 房市資產閉環頁</li>
-          <li><strong>ark-stock-trading-strategy</strong>：一股戰法講義頁</li>
-          <li><strong>20260424-us-stock</strong>：今晚美股價值區觀察頁</li>
-          <li><strong>20260424-tw-stock</strong>：台股預習 / 複盤模板頁</li>
-        </ul>
-        <p class="lead">前面做過的一些版本，<br>大多已被後續版本覆蓋或改名整併。<br><br>所以我這裡先整理<br>「目前仍在使用、可直接分享」的正式網址。</p>
-      </div>
-    </section>
-
-    <div class="footer">Rich Cherie 網頁作品目錄</div>
+    <div class="footer">Rich Cherie 整合網站入口</div>
   </main>
+
+  <script>
+    const input = document.getElementById('searchInput');
+    const cards = Array.from(document.querySelectorAll('#cards .card'));
+    const countBox = document.getElementById('countBox');
+    const emptyState = document.getElementById('emptyState');
+
+    function runFilter() {
+      const q = input.value.trim().toLowerCase();
+      let visible = 0;
+
+      cards.forEach(card => {
+        const text = (card.innerText + ' ' + (card.dataset.search || '')).toLowerCase();
+        const show = !q || text.includes(q);
+        card.style.display = show ? '' : 'none';
+        if (show) visible += 1;
+      });
+
+      countBox.textContent = `顯示 ${visible} 個頁面`;
+      emptyState.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    input.addEventListener('input', runFilter);
+  </script>
 </body>
 </html>
